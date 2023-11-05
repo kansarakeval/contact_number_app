@@ -1,3 +1,4 @@
+import 'package:contact_number_app/utils/share_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
@@ -20,16 +21,17 @@ class _IntroScreenState extends State<IntroScreen> {
               body: "welcome to the contact application",
             ),
             PageViewModel(
-              title: "Introduction page",
-              body: "welcome to the contact diary"
+                title: "Introduction page",
+                body: "welcome to the contact diary"
             ),
           ],
           showDoneButton: true,
           onDone: (){
+            ShareHelper shr = ShareHelper();
+            shr.setIntroStatus();
             Navigator.pushReplacementNamed(context, 'contact');
           },
           done: Text("Done"),
-          showBackButton: true,
           next: Text("Next"),
         ),
       ),

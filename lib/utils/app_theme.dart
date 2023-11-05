@@ -9,9 +9,9 @@ ThemeData lightTheme = ThemeData(
   ),
   brightness: Brightness.light,
   textTheme: const TextTheme(
-    titleLarge: TextStyle(),
-    titleMedium: TextStyle(),
-    titleSmall: TextStyle(),
+    titleLarge: TextStyle(color: Colors.black),
+    titleMedium: TextStyle(color: Colors.black),
+    titleSmall: TextStyle(color: Colors.black),
   ),
 );
 
@@ -24,8 +24,8 @@ ThemeData darkTheme = ThemeData(
   ),
   brightness: Brightness.dark,
   textTheme: const TextTheme(
-    titleLarge: TextStyle(),
-    titleMedium: TextStyle(),
-    titleSmall: TextStyle(),
+    titleLarge: TextStyle(color: Colors.black),
+    titleMedium: TextStyle(color: Colors.black),
+    titleSmall: TextStyle(color: Colors.black),
   ),
 );
