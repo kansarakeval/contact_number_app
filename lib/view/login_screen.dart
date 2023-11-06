@@ -62,6 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   TextField(
                     controller: txtpass,
+                    keyboardType: TextInputType.visiblePassword,
                     decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'password',

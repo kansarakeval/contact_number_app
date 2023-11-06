@@ -45,4 +45,9 @@ class ShareHelper {
     SharedPreferences shr = await SharedPreferences.getInstance();
     return shr.getBool("login");
   }
+
+  Future<void> logout() async {
+    await setLoginLogout(false);
+  }
+
 }

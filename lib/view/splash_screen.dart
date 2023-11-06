@@ -28,7 +28,8 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(
       Duration(seconds:3),
       () {
-        Navigator.pushReplacementNamed(context, status == false || status == null ? 'intro' : 'login');
+        // Navigator.pushReplacementNamed(context, status == false || status == null ? 'intro' : 'login'  );
+        Navigator.pushReplacementNamed(context, status == false || status == null ? 'login' : 'contact' );
       },
     );
     return SafeArea(
