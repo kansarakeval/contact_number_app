@@ -76,6 +76,7 @@ class _AddContectScreenState extends State<AddContectScreen> {
                 controller: txtnumber,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(border: OutlineInputBorder()),
+
               ),
             ),
             Step(

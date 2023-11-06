@@ -36,5 +36,4 @@ class ContactProvider with ChangeNotifier{
   }
 
 
-
 }
