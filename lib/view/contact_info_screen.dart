@@ -81,7 +81,7 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
                       children: [
                         Icon(Icons.perm_phone_msg,color: Colors.green),
                         SizedBox(width: 10,),
-                        Text("Message +91 9723727767",style: Theme.of(context).textTheme.titleMedium,),
+                        Text("Message +91 ${c1.number}",style: Theme.of(context).textTheme.titleMedium,),
                       ],
                     ),
                     SizedBox(height: 20,),
@@ -89,7 +89,7 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
                       children: [
                         Icon(Icons.settings_phone_outlined,color: Colors.green),
                         SizedBox(width: 10,),
-                        Text("voice call +91 9723727767",style: Theme.of(context).textTheme.titleMedium,),
+                        Text("voice call +91 ${c1.number}",style: Theme.of(context).textTheme.titleMedium,),
                       ],
                     ),
                     SizedBox(height: 20,),
@@ -97,7 +97,7 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
                       children: [
                         Icon(Icons.missed_video_call,color: Colors.green),
                         SizedBox(width: 10,),
-                        Text("voice call +91 9723727767",style: Theme.of(context).textTheme.titleMedium,),
+                        Text("voice call +91 ${c1.number}",style: Theme.of(context).textTheme.titleMedium,),
                       ],
                     ),
                     SizedBox(height: 20,),

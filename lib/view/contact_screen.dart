@@ -23,6 +23,7 @@ class _ContactScreenState extends State<ContactScreen> {
     shr.setBool("login", false);
   }
 
+
   @override
   Widget build(BuildContext context) {
     providerw = context.watch<ContactProvider>();
