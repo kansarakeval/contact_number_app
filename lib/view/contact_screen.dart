@@ -23,7 +23,6 @@ class _ContactScreenState extends State<ContactScreen> {
     shr.setBool("login", false);
   }
 
-
   @override
   Widget build(BuildContext context) {
     providerw = context.watch<ContactProvider>();
@@ -57,8 +56,9 @@ class _ContactScreenState extends State<ContactScreen> {
           itemBuilder: (context, index) {
             return InkWell(
               onTap: () {
-                Navigator.pushNamed(context, 'contactinfo',arguments: providerr!.contactList[index]);
-
+                providerr!.storeIndex(index);
+                Navigator.pushNamed(context, 'contactinfo',
+                    arguments: providerr!.contactList[index]);
               },
               child: Padding(
                 padding: const EdgeInsets.all(10),
@@ -72,23 +72,26 @@ class _ContactScreenState extends State<ContactScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Row(
                       children: [
-                        providerw!.contactList[index].image != null?CircleAvatar(
-                          radius: 30,
-                          backgroundImage: FileImage(File("${providerr!.contactList[index].image}")
-                          ),
-                        ):
-                        CircleAvatar(
-                          radius: 30,
-                          child: Text(
-                            "${providerr!.contactList[index].name!.substring(0, 1)}",
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold, color: Colors.black),
-                          ),
-                        ),
+                        providerw!.contactList[index].image != null
+                            ? CircleAvatar(
+                                radius: 30,
+                                backgroundImage: FileImage(File(
+                                    "${providerr!.contactList[index].image}")),
+                              )
+                            : CircleAvatar(
+                                radius: 30,
+                                child: Text(
+                                  "${providerr!.contactList[index].name!.substring(0, 1)}",
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black),
+                                ),
+                              ),
                         const SizedBox(
                           width: 10,
                         ),
                         Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(

@@ -97,6 +97,7 @@ class _AddContectScreenState extends State<AddContectScreen> {
                     email: txtemail.text,
                     image: providerW!.ImagePath,
                   );
+                  providerR!.ImagePath="";
                   providerR!.contactadd(cm);
                   Navigator.pop(context);
                   providerR!.cancetclin();

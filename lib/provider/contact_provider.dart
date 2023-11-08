@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 class ContactProvider with ChangeNotifier{
   int stepIndex=0;
   String? ImagePath;
+  int? updateIndex;
 
   List<ContactModal> contactList=[];
 
@@ -35,5 +36,19 @@ class ContactProvider with ChangeNotifier{
     notifyListeners();
   }
 
+  void editData(ContactModal c1){
+    contactList[updateIndex!]=c1;
+    notifyListeners();
+  }
 
+  void storeIndex(int index)
+  {
+   updateIndex=index;
+    notifyListeners();
+  }
+
+  void deleteData(){
+    contactList.removeAt(updateIndex!);
+    notifyListeners();
+  }
 }
