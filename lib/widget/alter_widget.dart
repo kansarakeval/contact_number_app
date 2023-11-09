@@ -8,7 +8,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 void showWidget(BuildContext context, ContactModal c1) {
-
   TextEditingController txtName = TextEditingController(text: c1.name);
   TextEditingController txtEmail = TextEditingController(text: c1.email);
   TextEditingController txtNumber = TextEditingController(text: c1.number);
@@ -24,14 +23,21 @@ void showWidget(BuildContext context, ContactModal c1) {
           actions: [
             Align(
               alignment: Alignment.center,
-              child: c1.image==null ?CircleAvatar(
-                radius: 50,
-                child: Text("${c1.name?.substring(0,1).toUpperCase()}",
-                  style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-              ):CircleAvatar(
-                radius: 50,
-                backgroundImage: FileImage(File("${c1.image}"),),
-              ),
+              child: c1.image == null || providerr!.ImagePath == null
+                  ? CircleAvatar(
+                      radius: 50,
+                      child: Text(
+                        "${c1.name?.substring(0, 1).toUpperCase()}",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                    )
+                  : CircleAvatar(
+                      radius: 50,
+                      backgroundImage: FileImage(
+                        File("${c1.image}"),
+                      ),
+                    ),
             ),
             Align(
               alignment: Alignment.center,
@@ -77,7 +83,11 @@ void showWidget(BuildContext context, ContactModal c1) {
             ),
             ElevatedButton(
               onPressed: () {
-                ContactModal up = ContactModal(name: txtName.text,number: txtNumber.text,email: txtEmail.text,image: c1.image);
+                ContactModal up = ContactModal(
+                    name: txtName.text,
+                    number: txtNumber.text,
+                    email: txtEmail.text,
+                    image: c1.image);
                 context.read<ContactProvider>().editData(up);
                 Navigator.pop(context);
                 Navigator.pop(context);

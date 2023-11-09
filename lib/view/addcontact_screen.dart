@@ -132,8 +132,8 @@ class _AddContectScreenState extends State<AddContectScreen> {
   TextEditingController txtnumber = TextEditingController();
   TextEditingController txtemail = TextEditingController();
 
-  GlobalKey<FormState> nameKey = GlobalKey<FormState>(); // Add this line
-  GlobalKey<FormState> numberKey = GlobalKey<FormState>(); // Add this line
+  GlobalKey<FormState> nameKey = GlobalKey<FormState>();
+  GlobalKey<FormState> numberKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -149,6 +149,10 @@ class _AddContectScreenState extends State<AddContectScreen> {
           onStepContinue: () {
             if (providerW!.stepIndex == 1) {
               if (nameKey.currentState!.validate()) {
+                providerW!.nextstep();
+              }
+            } else if(providerW!.stepIndex == 2){
+              if (numberKey.currentState!.validate()){
                 providerW!.nextstep();
               }
             }
@@ -195,7 +199,7 @@ class _AddContectScreenState extends State<AddContectScreen> {
                   decoration: InputDecoration(border: OutlineInputBorder()),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return ;
+                      return 'please enter name';
                     }
                     return null;
                   },
@@ -212,7 +216,7 @@ class _AddContectScreenState extends State<AddContectScreen> {
                   decoration: InputDecoration(border: OutlineInputBorder()),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return ;
+                      return 'please enter number';
                     }
                     return null;
                   },
@@ -237,7 +241,7 @@ class _AddContectScreenState extends State<AddContectScreen> {
                     email: txtemail.text,
                     image: providerW!.ImagePath,
                   );
-                  providerR!.ImagePath = "";
+                  providerR!.setImagePath(null);
                   providerR!.contactadd(cm);
                   Navigator.pop(context);
                   providerR!.cancetclin();

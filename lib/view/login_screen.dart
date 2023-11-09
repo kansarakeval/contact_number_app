@@ -84,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         if (txtemail.text == log['email'] &&
                             txtpass.text == log['password']) {
                           shr.setLoginLogout(true);
-                          Navigator.pushNamed(context, 'contact');
+                          Navigator.pushReplacementNamed(context, 'contact');
                         } else {
                           ScaffoldMessenger.of(context)
                               .showSnackBar(const SnackBar(content: Text("Email and password invalid")));

@@ -1,5 +1,7 @@
-import 'package:contact_number_app/utils/share_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:contact_number_app/provider/contact_provider.dart';
+import 'package:contact_number_app/utils/share_helper.dart';
+import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -9,11 +11,23 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  ContactProvider? providerW;
+  ContactProvider? providerR;
   TextEditingController txtemail = TextEditingController();
   TextEditingController txtpass = TextEditingController();
 
+  bool validateEmail(String email) {
+    return RegExp(r"^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email);
+  }
+
+  bool validatePassword(String password) {
+    return password.length >= 6;
+  }
+
   @override
   Widget build(BuildContext context) {
+    providerW = context.watch<ContactProvider>();
+    providerR = context.read<ContactProvider>();
     return SafeArea(
       child: Scaffold(
         body: Padding(
@@ -23,8 +37,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: Column(
                 children: [
                   Container(
-                    height: MediaQuery.sizeOf(context).height * 0.30,
-                    width: MediaQuery.sizeOf(context).width * 0.30,
+                    height: MediaQuery.of(context).size.height * 0.30,
+                    width: MediaQuery.of(context).size.width * 0.30,
                     child: const Image(
                       image: AssetImage("assets/img/register.png"),
                     ),
@@ -64,26 +78,45 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   TextField(
                     controller: txtpass,
                     keyboardType: TextInputType.visiblePassword,
+                    obscureText: true,
                     decoration: const InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: 'password',
+                        labelText: 'Password',
                         filled: true),
                   ),
                   const SizedBox(
                     height: 10,
                   ),
                   ElevatedButton(
-                      onPressed: () {
+                    onPressed: () {
+                      String email = txtemail.text;
+                      String password = txtpass.text;
+
+                      if (validateEmail(email) && validatePassword(password)) {
                         ShareHelper shr = ShareHelper();
-                        shr.setRegister(txtemail.text, txtpass.text);
+                        shr.setRegister(email, password);
                         Navigator.pop(context);
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
-                            content: Text("Registration success!",style: TextStyle(color: Colors.yellow),),
+                            content: Text(
+                              "Registration success!",
+                              style: TextStyle(color: Colors.yellow),
+                            ),
                           ),
                         );
-                      },
-                      child: const Text("Register"))
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                              "Invalid email or password!",
+                              style: TextStyle(color: Colors.red),
+                            ),
+                          ),
+                        );
+                      }
+                    },
+                    child: const Text("Register"),
+                  )
                 ],
               ),
             ),
