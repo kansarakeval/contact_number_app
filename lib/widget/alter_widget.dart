@@ -19,23 +19,23 @@ void showWidget(BuildContext context, ContactModal c1) {
       return SingleChildScrollView(
         child: AlertDialog(
           alignment: Alignment.center,
-          title: Text("Update Contact"),
+          title: const Text("Update Contact"),
           actions: [
             Align(
               alignment: Alignment.center,
-              child: c1.image == null || providerr!.ImagePath == null
+              child: c1.image != null || providerr!.ImagePath != null
                   ? CircleAvatar(
                       radius: 50,
-                      child: Text(
-                        "${c1.name?.substring(0, 1).toUpperCase()}",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                      backgroundImage: FileImage(
+                        File("${c1.image}"),
                       ),
                     )
                   : CircleAvatar(
                       radius: 50,
-                      backgroundImage: FileImage(
-                        File("${c1.image}"),
+                      child: Text(
+                        "${c1.name?.substring(0, 1).toUpperCase()}",
+                        style: const TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                     ),
             ),
@@ -43,42 +43,43 @@ void showWidget(BuildContext context, ContactModal c1) {
               alignment: Alignment.center,
               child: IconButton(
                   onPressed: () async {
-                    final pickedFile = await ImagePicker()
-                        .pickImage(source: ImageSource.gallery);
+                    ImagePicker picker = ImagePicker();
+                    XFile? image=await picker.pickImage(source: ImageSource.gallery);
+                    providerr!.setImagePath(image!.path);
                   },
                   icon: const Icon(Icons.image_outlined)),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             TextField(
               controller: txtName,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 label: Text("Name"),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             TextField(
               controller: txtNumber,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 label: Text("Number"),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             TextField(
               controller: txtEmail,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 label: Text("Email"),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             ElevatedButton(
@@ -92,7 +93,7 @@ void showWidget(BuildContext context, ContactModal c1) {
                 Navigator.pop(context);
                 Navigator.pop(context);
               },
-              child: Text("Update"),
+              child: const Text("Update"),
             ),
           ],
         ),
