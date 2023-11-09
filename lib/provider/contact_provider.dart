@@ -1,5 +1,6 @@
 import 'package:contact_number_app/modal/contact_modal.dart';
 import 'package:flutter/foundation.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ContactProvider with ChangeNotifier{
   int stepIndex=0;
@@ -50,5 +51,10 @@ class ContactProvider with ChangeNotifier{
   void deleteData(){
     contactList.removeAt(updateIndex!);
     notifyListeners();
+  }
+
+  Future<void> share(ContactModal c1) async {
+    Share.share("${c1.name} \n ${c1.number}");
+    ShareResult result = await Share.shareWithResult("");
   }
 }

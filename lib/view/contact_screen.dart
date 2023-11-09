@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:contact_number_app/provider/contact_provider.dart';
 import 'package:contact_number_app/provider/theme_provider.dart';
 import 'package:contact_number_app/utils/share_helper.dart';
@@ -75,13 +74,15 @@ class _ContactScreenState extends State<ContactScreen> {
                         providerw!.contactList[index].image != null
                             ? CircleAvatar(
                                 radius: 30,
-                                backgroundImage: FileImage(File(
-                                    "${providerr!.contactList[index].image}")),
+                                backgroundImage: FileImage(
+                                  File(
+                                      "${providerw!.contactList[index].image}"),
+                                ),
                               )
                             : CircleAvatar(
                                 radius: 30,
                                 child: Text(
-                                  "${providerr!.contactList[index].name!.substring(0, 1)}",
+                                  "${providerw!.contactList[index].name!.substring(0, 1).toUpperCase()}",
                                   style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.black),

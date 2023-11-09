@@ -14,12 +14,18 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    checkStatus();
     createdata();
+  }
+  void checkStatus() async {
+    ShareHelper shr = ShareHelper();
+    status = await shr.getIntroStatus();
+
   }
 
   void createdata() async {
     ShareHelper shr = ShareHelper();
-    status = await shr.getIntroStatus();
+    status = await shr.getLoginStatus();
 
   }
 

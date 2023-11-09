@@ -93,6 +93,12 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
                         await launchUrl(uri);
                       },
                       icon: Icon(Icons.mail_outline),),
+                  IconButton(
+                      onPressed: () {
+                        providerr!.share(c1);
+                      },
+                      icon: Icon(Icons.share_rounded),),
+
                 ],
               ),
               SizedBox(
