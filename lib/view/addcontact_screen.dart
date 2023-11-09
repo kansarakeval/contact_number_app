@@ -132,7 +132,8 @@ class _AddContectScreenState extends State<AddContectScreen> {
   TextEditingController txtnumber = TextEditingController();
   TextEditingController txtemail = TextEditingController();
 
-  GlobalKey<FormState> formKey = GlobalKey<FormState>(); // Add this line
+  GlobalKey<FormState> nameKey = GlobalKey<FormState>(); // Add this line
+  GlobalKey<FormState> numberKey = GlobalKey<FormState>(); // Add this line
 
   @override
   Widget build(BuildContext context) {
@@ -146,15 +147,14 @@ class _AddContectScreenState extends State<AddContectScreen> {
         body: Stepper(
           currentStep: providerW!.stepIndex,
           onStepContinue: () {
-            providerW!.nextstep();
-
-            // if (providerW!.stepIndex == 1) {
-            //   if (formKey.currentState!.validate()) {
-            //     providerW!.nextstep();
-            //   }
-            // } else {
-            //   providerW!.nextstep();
-            // }
+            if (providerW!.stepIndex == 1) {
+              if (nameKey.currentState!.validate()) {
+                providerW!.nextstep();
+              }
+            }
+            else {
+              providerW!.nextstep();
+            }
           },
           onStepCancel: () {
             providerR!.cancetstep();
@@ -188,7 +188,7 @@ class _AddContectScreenState extends State<AddContectScreen> {
             Step(
               title: Text("Contact Name"),
               content: Form(
-                key: formKey,
+                key: nameKey,
                 child: TextFormField(
                   controller: txtname,
                   keyboardType: TextInputType.name,
@@ -205,6 +205,7 @@ class _AddContectScreenState extends State<AddContectScreen> {
             Step(
               title: Text("Contact Number"),
               content: Form(
+                key: numberKey,
                 child: TextFormField(
                   controller: txtnumber,
                   keyboardType: TextInputType.number,
