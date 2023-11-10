@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:contact_number_app/modal/contact_modal.dart';
 import 'package:contact_number_app/provider/contact_provider.dart';
 import 'package:flutter/cupertino.dart';

@@ -1,13 +1,16 @@
 import 'package:contact_number_app/modal/contact_modal.dart';
 import 'package:flutter/foundation.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:share_plus/share_plus.dart';
 
 class ContactProvider with ChangeNotifier{
   int stepIndex=0;
   String? ImagePath;
   int? updateIndex;
+  bool checkBioMatrixStatus = false;
 
   List<ContactModal> contactList=[];
+  List<ContactModal> hideContactList=[];
 
   void nextstep(){
     if(stepIndex < 4){
@@ -27,6 +30,7 @@ class ContactProvider with ChangeNotifier{
     stepIndex = 0;
     notifyListeners();
   }
+
   void setImagePath(String? path) {
     ImagePath = path;
     notifyListeners();
@@ -42,8 +46,7 @@ class ContactProvider with ChangeNotifier{
     notifyListeners();
   }
 
-  void storeIndex(int index)
-  {
+  void storeIndex(int index) {
    updateIndex=index;
     notifyListeners();
   }
@@ -56,5 +59,35 @@ class ContactProvider with ChangeNotifier{
   Future<void> share(ContactModal c1) async {
     Share.share("${c1.name} \n ${c1.number}");
     ShareResult result = await Share.shareWithResult("");
+  }
+
+  Future<bool?> bioMatrix() async{
+    LocalAuthentication auth = LocalAuthentication();
+    checkBioMatrixStatus = await auth.canCheckBiometrics;
+    if(checkBioMatrixStatus){
+      List<BiometricType> biotypes = await auth.getAvailableBiometrics();
+      if(biotypes.isNotEmpty){
+        bool isAuth =await auth.authenticate(localizedReason: "Enter the password",options: AuthenticationOptions(
+          biometricOnly: false,
+          useErrorDialogs: true
+        ),);
+        return isAuth;
+      }
+    }
+    return null;
+  }
+
+  void hideContact(){
+    ContactModal hiddenContact = contactList[updateIndex!];
+    hideContactList.add(hiddenContact);
+    contactList.removeAt(updateIndex!);
+    notifyListeners();
+  }
+
+  void unhideContact(){
+    ContactModal unHideContact = hideContactList[updateIndex!];
+    contactList.add(unHideContact);
+    hideContactList.removeAt(updateIndex!);
+    notifyListeners();
   }
 }

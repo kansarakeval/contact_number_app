@@ -17,6 +17,8 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
   ContactProvider? providerw;
   ContactProvider? providerr;
 
+  bool islock=false;
+
   @override
   Widget build(BuildContext context) {
     providerw = context.watch<ContactProvider>();
@@ -31,14 +33,14 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
               onPressed: () {
                 showWidget(context, c1);
               },
-              icon: Icon(Icons.edit),
+              icon: Icon(Icons.mode_edit_outline_outlined),
             ),
             IconButton(
               onPressed: () {
                 providerr!.deleteData();
                 Navigator.pop(context);
               },
-              icon: Icon(Icons.delete),
+              icon: Icon(Icons.delete_outline_outlined),
             ),
           ],
         ),
@@ -71,33 +73,67 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  IconButton(
-                      onPressed: () async {
-                        Uri uri = Uri.parse("tel:+91${c1.number}");
-                        await launchUrl(uri);
-                      },
-                      icon: Icon(Icons.call)),
+                  Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(50),color: Colors.grey.shade200),
+                    child: IconButton(
+                        onPressed: () async {
+                          Uri uri = Uri.parse("tel:+91${c1.number}");
+                          await launchUrl(uri);
+                        },
+                        icon: Icon(Icons.call_outlined)),
+                  ),
                   SizedBox(
                     width: 20,
                   ),
-                  IconButton(onPressed: ()async {
-                    Uri uri = Uri.parse("sms:+91${c1.number}");
-                    await launchUrl(uri);
-                  }, icon: Icon(Icons.chat)),
+                  Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(50),color: Colors.grey.shade200),
+                    child: IconButton(onPressed: ()async {
+                      Uri uri = Uri.parse("sms:+91${c1.number}");
+                      await launchUrl(uri);
+                    }, icon: Icon(Icons.chat_outlined)),
+                  ),
                   SizedBox(
                     width: 20,
                   ),
-                  IconButton(
-                      onPressed: ()async {
-                        Uri uri = Uri.parse("mailto:${c1.email}");
-                        await launchUrl(uri);
-                      },
-                      icon: Icon(Icons.mail_outline),),
-                  IconButton(
-                      onPressed: () {
-                        providerr!.share(c1);
-                      },
-                      icon: Icon(Icons.share_rounded),),
+                  Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(50),color: Colors.grey.shade200),
+                    child: IconButton(
+                        onPressed: ()async {
+                          Uri uri = Uri.parse("mailto:${c1.email}");
+                          await launchUrl(uri);
+                        },
+                        icon: Icon(Icons.mail_outline),),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(50),color: Colors.grey.shade200),
+                    child: IconButton(
+                        onPressed: () {
+                          providerr!.share(c1);
+                        },
+                        icon: Icon(Icons.share_outlined),),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Container(
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(50),color: Colors.grey.shade200),
+                      child: IconButton(onPressed: () {
+                        providerr!.hideContact();
+                        Navigator.pop(context);
+                      }, icon: islock?Icon(Icons.lock_open_sharp):Icon(Icons.lock_outline),),),
 
                 ],
               ),
@@ -106,11 +142,11 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
               ),
               Container(
                 margin: EdgeInsets.all(10),
-                height: MediaQuery.sizeOf(context).height * 0.45,
+                height: MediaQuery.sizeOf(context).height * 0.40,
                 width: MediaQuery.sizeOf(context).width,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.grey.shade300),
+                    color: Colors.grey.shade100),
                 child: Padding(
                   padding: EdgeInsets.all(5),
                   child: Column(
@@ -130,7 +166,7 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
                         children: [
                           IconButton(
                             onPressed: () {},
-                            icon: Icon(Icons.call),
+                            icon: Icon(Icons.call_outlined),
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -148,7 +184,7 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
                           Spacer(),
                           IconButton(
                             onPressed: () {},
-                            icon: Icon(Icons.video_camera_front_rounded),
+                            icon: Icon(Icons.video_camera_back_outlined),
                           ),
                           IconButton(
                             onPressed: () {},
@@ -163,8 +199,8 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
                         children: [
                           Image(
                             image: AssetImage("assets/img/whatsapp.png"),
-                            height: 30,
-                            width: 30,
+                            height: 25,
+                            width: 25,
                           ),
                           SizedBox(
                             width: 10,
@@ -182,8 +218,8 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
                         children: [
                           Image(
                             image: AssetImage("assets/img/whatsapp.png"),
-                            height: 30,
-                            width: 30,
+                            height: 25,
+                            width: 25,
                           ),
                           SizedBox(
                             width: 10,
@@ -201,8 +237,8 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
                         children: [
                           Image(
                             image: AssetImage("assets/img/whatsapp.png"),
-                            height: 30,
-                            width: 30,
+                            height: 25,
+                            width: 25,
                           ),
                           SizedBox(
                             width: 10,

@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:contact_number_app/provider/contact_provider.dart';
 import 'package:contact_number_app/provider/theme_provider.dart';
 import 'package:contact_number_app/utils/share_helper.dart';
+import 'package:contact_number_app/view/hidden_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -16,6 +17,7 @@ class ContactScreen extends StatefulWidget {
 class _ContactScreenState extends State<ContactScreen> {
   ContactProvider? providerw;
   ContactProvider? providerr;
+  bool bioMatrix =true;
 
   Future<void> logout() async {
     SharedPreferences shr = await SharedPreferences.getInstance();
@@ -29,6 +31,15 @@ class _ContactScreenState extends State<ContactScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              if(bioMatrix){
+                providerr!.bioMatrix();
+              }
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HiddenScreen(),));
+            },
+            icon: Icon(Icons.remove_red_eye_outlined),
+          ),
           title: const Text("Contact App"),
           actions: [
             IconButton(
@@ -43,7 +54,7 @@ class _ContactScreenState extends State<ContactScreen> {
                 value: value1.islight,
                 onChanged: (value) {
                   ShareHelper shr = ShareHelper();
-                  shr.setTheme(false);
+                  shr.setTheme(value);
                   value1.changeTheme();
                 },
               ),
