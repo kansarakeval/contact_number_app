@@ -17,7 +17,6 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
   ContactProvider? providerw;
   ContactProvider? providerr;
 
-  bool islock=false;
 
   @override
   Widget build(BuildContext context) {
@@ -33,14 +32,14 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
               onPressed: () {
                 showWidget(context, c1);
               },
-              icon: Icon(Icons.mode_edit_outline_outlined),
+              icon: const Icon(Icons.mode_edit_outline_outlined),
             ),
             IconButton(
               onPressed: () {
                 providerr!.deleteData();
                 Navigator.pop(context);
               },
-              icon: Icon(Icons.delete_outline_outlined),
+              icon: const Icon(Icons.delete_outline_outlined),
             ),
           ],
         ),
@@ -53,21 +52,21 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
                       radius: 80,
                       child: Text(
                         "${c1.name?.substring(0, 1).toUpperCase()}",
-                        style: TextStyle(fontSize: 40),
+                        style: const TextStyle(fontSize: 40),
                       ),
                     )
                   : CircleAvatar(
                       radius: 80,
                       backgroundImage: FileImage(File("${c1.image}")),
                     ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Text(
                 "${c1.name}",
                 style: Theme.of(context).textTheme.titleLarge,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Row(
@@ -76,79 +75,103 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
                   Container(
                     height: 40,
                     width: 40,
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(50),color: Colors.grey.shade200),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: Colors.grey.shade200),
                     child: IconButton(
                         onPressed: () async {
                           Uri uri = Uri.parse("tel:+91${c1.number}");
                           await launchUrl(uri);
                         },
-                        icon: Icon(Icons.call_outlined)),
+                        icon: const Icon(Icons.call_outlined)),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   Container(
                     height: 40,
                     width: 40,
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(50),color: Colors.grey.shade200),
-                    child: IconButton(onPressed: ()async {
-                      Uri uri = Uri.parse("sms:+91${c1.number}");
-                      await launchUrl(uri);
-                    }, icon: Icon(Icons.chat_outlined)),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(50),color: Colors.grey.shade200),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: Colors.grey.shade200),
                     child: IconButton(
-                        onPressed: ()async {
-                          Uri uri = Uri.parse("mailto:${c1.email}");
+                        onPressed: () async {
+                          Uri uri = Uri.parse("sms:+91${c1.number}");
                           await launchUrl(uri);
                         },
-                        icon: Icon(Icons.mail_outline),),
+                        icon: const Icon(Icons.chat_outlined)),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   Container(
                     height: 40,
                     width: 40,
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(50),color: Colors.grey.shade200),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: Colors.grey.shade200),
                     child: IconButton(
-                        onPressed: () {
-                          providerr!.share(c1);
-                        },
-                        icon: Icon(Icons.share_outlined),),
+                      onPressed: () async {
+                        Uri uri = Uri.parse("mailto:${c1.email}");
+                        await launchUrl(uri);
+                      },
+                      icon: const Icon(Icons.mail_outline),
+                    ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   Container(
-                      height: 40,
-                      width: 40,
-                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(50),color: Colors.grey.shade200),
-                      child: IconButton(onPressed: () {
-                        providerr!.hideContact();
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: Colors.grey.shade200),
+                    child: IconButton(
+                      onPressed: () {
+                        providerr!.share(c1);
+                      },
+                      icon: const Icon(Icons.share_outlined),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: Colors.grey.shade200),
+                    child: IconButton(
+                      onPressed: () {
+                        if(providerr!.islock){
+                          providerr!.hideContact();
+                        }
+                        else{
+                          providerr!.unhideContact();
+                        }
                         Navigator.pop(context);
-                      }, icon: islock?Icon(Icons.lock_open_sharp):Icon(Icons.lock_outline),),),
-
+                      },
+                      icon: providerr!.islock
+                          ? const Icon(Icons.lock_open_sharp)
+                          : const Icon(Icons.lock_outline),
+                    ),
+                  ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Container(
-                margin: EdgeInsets.all(10),
+                margin: const EdgeInsets.all(10),
                 height: MediaQuery.sizeOf(context).height * 0.40,
                 width: MediaQuery.sizeOf(context).width,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: Colors.grey.shade100),
                 child: Padding(
-                  padding: EdgeInsets.all(5),
+                  padding: const EdgeInsets.all(5),
                   child: Column(
                     children: [
                       Row(
@@ -159,14 +182,14 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Row(
                         children: [
                           IconButton(
                             onPressed: () {},
-                            icon: Icon(Icons.call_outlined),
+                            icon: const Icon(Icons.call_outlined),
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -181,28 +204,28 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
                               ),
                             ],
                           ),
-                          Spacer(),
+                          const Spacer(),
                           IconButton(
                             onPressed: () {},
-                            icon: Icon(Icons.video_camera_back_outlined),
+                            icon: const Icon(Icons.video_camera_back_outlined),
                           ),
                           IconButton(
                             onPressed: () {},
-                            icon: Icon(Icons.mail_outline),
+                            icon: const Icon(Icons.mail_outline),
                           )
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Row(
                         children: [
-                          Image(
+                          const Image(
                             image: AssetImage("assets/img/whatsapp.png"),
                             height: 25,
                             width: 25,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Text(
@@ -211,17 +234,17 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Row(
                         children: [
-                          Image(
+                          const Image(
                             image: AssetImage("assets/img/whatsapp.png"),
                             height: 25,
                             width: 25,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Text(
@@ -230,17 +253,17 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Row(
                         children: [
-                          Image(
+                          const Image(
                             image: AssetImage("assets/img/whatsapp.png"),
                             height: 25,
                             width: 25,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Text(
@@ -249,7 +272,7 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Align(

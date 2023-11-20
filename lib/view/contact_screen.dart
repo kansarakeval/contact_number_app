@@ -17,7 +17,7 @@ class ContactScreen extends StatefulWidget {
 class _ContactScreenState extends State<ContactScreen> {
   ContactProvider? providerw;
   ContactProvider? providerr;
-  bool bioMatrix =true;
+  bool bioMatrix = true;
 
   Future<void> logout() async {
     SharedPreferences shr = await SharedPreferences.getInstance();
@@ -32,11 +32,13 @@ class _ContactScreenState extends State<ContactScreen> {
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            onPressed: () {
-              if(bioMatrix){
-                providerr!.bioMatrix();
+            onPressed: () async {
+              bool? a = await providerr!.bioMatrix();
+              if (a != null) {
+                if (a == true) {
+                  Navigator.pushNamed(context, 'hidd');
+                }
               }
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HiddenScreen(),));
             },
             icon: Icon(Icons.remove_red_eye_outlined),
           ),
@@ -66,6 +68,7 @@ class _ContactScreenState extends State<ContactScreen> {
           itemBuilder: (context, index) {
             return InkWell(
               onTap: () {
+                providerr!.islock = true ;
                 providerr!.storeIndex(index);
                 Navigator.pushNamed(context, 'contactinfo',
                     arguments: providerr!.contactList[index]);

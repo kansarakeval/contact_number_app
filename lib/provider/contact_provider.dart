@@ -8,6 +8,8 @@ class ContactProvider with ChangeNotifier{
   String? ImagePath;
   int? updateIndex;
   bool checkBioMatrixStatus = false;
+  bool islock = false;
+
 
   List<ContactModal> contactList=[];
   List<ContactModal> hideContactList=[];
@@ -70,7 +72,8 @@ class ContactProvider with ChangeNotifier{
         bool isAuth =await auth.authenticate(localizedReason: "Enter the password",options: AuthenticationOptions(
           biometricOnly: false,
           useErrorDialogs: true
-        ),);
+        ),
+        );
         return isAuth;
       }
     }
