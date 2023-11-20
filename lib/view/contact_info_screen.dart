@@ -83,7 +83,7 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
                           Uri uri = Uri.parse("tel:+91${c1.number}");
                           await launchUrl(uri);
                         },
-                        icon: const Icon(Icons.call_outlined)),
+                        icon: const Icon(Icons.call_outlined,color: Colors.black,),),
                   ),
                   const SizedBox(
                     width: 20,
@@ -99,7 +99,7 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
                           Uri uri = Uri.parse("sms:+91${c1.number}");
                           await launchUrl(uri);
                         },
-                        icon: const Icon(Icons.chat_outlined)),
+                        icon: const Icon(Icons.chat_outlined,color: Colors.black,),),
                   ),
                   const SizedBox(
                     width: 20,
@@ -115,7 +115,7 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
                         Uri uri = Uri.parse("mailto:${c1.email}");
                         await launchUrl(uri);
                       },
-                      icon: const Icon(Icons.mail_outline),
+                      icon: const Icon(Icons.mail_outline,color: Colors.black,),
                     ),
                   ),
                   const SizedBox(
@@ -131,7 +131,7 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
                       onPressed: () {
                         providerr!.share(c1);
                       },
-                      icon: const Icon(Icons.share_outlined),
+                      icon: const Icon(Icons.share_outlined,color: Colors.black,),
                     ),
                   ),
                   const SizedBox(
@@ -146,16 +146,16 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
                     child: IconButton(
                       onPressed: () {
                         if(providerr!.islock){
-                          providerr!.hideContact();
+                          providerr!.unhideContact();
                         }
                         else{
-                          providerr!.unhideContact();
+                          providerr!.hideContact();
                         }
                         Navigator.pop(context);
                       },
                       icon: providerr!.islock
-                          ? const Icon(Icons.lock_open_sharp)
-                          : const Icon(Icons.lock_outline),
+                          ? const Icon(Icons.lock_open_sharp,color: Colors.black,)
+                          : const Icon(Icons.lock_outline,color: Colors.black,),
                     ),
                   ),
                 ],
@@ -189,7 +189,7 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
                         children: [
                           IconButton(
                             onPressed: () {},
-                            icon: const Icon(Icons.call_outlined),
+                            icon: const Icon(Icons.call_outlined,color: Colors.black,),
                           ),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -207,11 +207,11 @@ class _ContactInfoScreenState extends State<ContactInfoScreen> {
                           const Spacer(),
                           IconButton(
                             onPressed: () {},
-                            icon: const Icon(Icons.video_camera_back_outlined),
+                            icon: const Icon(Icons.video_camera_back_outlined,color: Colors.black,),
                           ),
                           IconButton(
                             onPressed: () {},
-                            icon: const Icon(Icons.mail_outline),
+                            icon: const Icon(Icons.mail_outline,color: Colors.black,),
                           )
                         ],
                       ),

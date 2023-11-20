@@ -68,7 +68,7 @@ class _ContactScreenState extends State<ContactScreen> {
           itemBuilder: (context, index) {
             return InkWell(
               onTap: () {
-                providerr!.islock = true ;
+                providerr!.islock = false;
                 providerr!.storeIndex(index);
                 Navigator.pushNamed(context, 'contactinfo',
                     arguments: providerr!.contactList[index]);

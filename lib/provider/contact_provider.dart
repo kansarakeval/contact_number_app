@@ -44,7 +44,12 @@ class ContactProvider with ChangeNotifier{
   }
 
   void editData(ContactModal c1){
-    contactList[updateIndex!]=c1;
+    if(islock){
+      hideContactList[updateIndex!]=c1;
+    }
+    else{
+      contactList[updateIndex!]=c1;
+    }
     notifyListeners();
   }
 
@@ -54,7 +59,12 @@ class ContactProvider with ChangeNotifier{
   }
 
   void deleteData(){
-    contactList.removeAt(updateIndex!);
+    if(islock){
+      hideContactList.removeAt(updateIndex!);
+    }
+    else{
+      contactList.removeAt(updateIndex!);
+    }
     notifyListeners();
   }
 

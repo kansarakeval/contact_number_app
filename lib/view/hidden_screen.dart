@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:contact_number_app/provider/contact_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -27,6 +26,7 @@ class _HiddenScreenState extends State<HiddenScreen> {
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {
+              providerr!.islock = true;
               providerr!.storeIndex(index);
               Navigator.pushNamed(context, 'contactinfo',
                   arguments: providerr!.hideContactList[index]);
