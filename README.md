@@ -19,7 +19,6 @@ samples, guidance on mobile development, and a full API reference.
   <img src="https://github.com/kansarakeval/contact_number_app/assets/119046853/0f5a1ce4-91d1-415a-bc84-2a281b2468c5" hight="500" width="150">
   <img src="https://github.com/kansarakeval/contact_number_app/assets/119046853/8293ecde-de7a-4498-aba8-4b703840ac2c" hight="500" width="150">
   <img src="https://github.com/kansarakeval/contact_number_app/assets/119046853/0e4cb74b-3c93-4fb6-a641-b7b126a5379c" hight="500" width="150">
-  <img src="https://github.com/kansarakeval/contact_number_app/assets/119046853/0e4cb74b-3c93-4fb6-a641-b7b126a5379c" hight="500" width="150">
   <img src="https://github.com/kansarakeval/contact_number_app/assets/119046853/cdd438d0-edc6-413e-a035-962dfe033b25" hight="500" width="150">
   <img src="https://github.com/kansarakeval/contact_number_app/assets/119046853/e25e0298-1870-456b-b579-7297dc7aa495" hight="500" width="150">
   <img src="https://github.com/kansarakeval/contact_number_app/assets/119046853/65a1c748-dffe-46ec-b5f0-ccd1d2490304" hight="500" width="150">
